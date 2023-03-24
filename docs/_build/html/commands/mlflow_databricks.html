@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLflow utils &#8212; data_ml_utils 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MLflow Databricks API Specs" href="mlflow_databricks_api_specs.html" />
+    <link rel="prev" title="Databricks API Specs" href="databricks_utils_api_specs.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/hipages_logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pyathena.html">Pyathena client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyathena_api_specs.html">Pyathena API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyathena_utils_api_specs.html">Pyathena Utils API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="databricks_utils_api_specs.html">Databricks API Specs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLflow utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_databricks_api_specs.html">MLflow Databricks API Specs</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/hipagesgroup/data-ml-utils">data-ml-utils@github</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="databricks_utils_api_specs.html" title="previous chapter">Databricks API Specs</a></li>
+      <li>Next: <a href="mlflow_databricks_api_specs.html" title="next chapter">MLflow Databricks API Specs</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="mlflow-utils">
+<h1>MLflow utils<a class="headerlink" href="#mlflow-utils" title="Permalink to this headline">¶</a></h1>
+<p>This MLflow utils will be used when we run our workflow jobs in databricks. This would only work in databricks ML runtime cluster.</p>
+<div class="section" id="ml-runtime-cluster">
+<h2>ML runtime cluster<a class="headerlink" href="#ml-runtime-cluster" title="Permalink to this headline">¶</a></h2>
+<p>Please only use <cite>11.3</cite> ML runtime cluster, our MLflow version is tied to <cite>1.29.0</cite>, which is 11.3 cluster version.</p>
+<img alt="../_images/mlflow_databricks_runtime_version.png" class="align-center" src="../_images/mlflow_databricks_runtime_version.png" />
+</div>
+<div class="section" id="mlflow-log-artifact">
+<h2>MLflow log artifact<a class="headerlink" href="#mlflow-log-artifact" title="Permalink to this headline">¶</a></h2>
+<p>We will need to import the python package</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">data_ml_utils.mlflow_databricks.mlflow_tracker</span> <span class="kn">import</span> <span class="n">mlflow_log_artifact</span>
+</pre></div>
+</div>
+<p>And then call the function, when we have an artifact to log.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow_log_artifact</span><span class="p">(</span><span class="n">artifact</span><span class="o">=</span><span class="n">test_object</span><span class="p">,</span> <span class="n">artifact_name</span><span class="o">=</span><span class="s2">&quot;test_file&quot;</span><span class="p">,</span> <span class="n">artifact_path</span><span class="o">=</span><span class="s2">&quot;test_directory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We are showing the difference between having <cite>artifact_path</cite> and not.</p>
+<img alt="../_images/mlflow_log_artifact.png" class="align-center" src="../_images/mlflow_log_artifact.png" />
+</div>
+<div class="section" id="mlflow-log-and-register-model">
+<h2>MLflow log and register model<a class="headerlink" href="#mlflow-log-and-register-model" title="Permalink to this headline">¶</a></h2>
+<p>This function logs and register a model.</p>
+<p>A successful response will see a model being logged in the run artifacts, and raises an exception otherwise</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow_log_register_model</span><span class="p">(</span>
+   <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+   <span class="n">type_of_model</span><span class="o">=</span><span class="s2">&quot;sk_model&quot;</span><span class="p">,</span>
+   <span class="n">model_func_dict</span><span class="o">=</span><span class="n">model_function_dict</span><span class="p">,</span>
+   <span class="n">artifact_path</span><span class="o">=</span><span class="s2">&quot;test_directory_2&quot;</span><span class="p">,</span>
+   <span class="n">name_of_registered_model</span><span class="o">=</span><span class="s2">&quot;dp-handyman-small-sized&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>type_of_model</cite> can be chosen from the dictionary keys.</p>
+<img alt="../_images/mlflow_log_register_model.png" class="align-center" src="../_images/mlflow_log_register_model.png" />
+</div>
+<div class="section" id="mllflow-log-params">
+<h2>MLlflow log params<a class="headerlink" href="#mllflow-log-params" title="Permalink to this headline">¶</a></h2>
+<p>This function logs the model parameters.</p>
+<p>A successful response will return a string response to indicate the parameter is logged, and raises an exception otherwise</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow_log_params</span><span class="p">(</span>
+   <span class="n">params</span><span class="o">=</span><span class="n">parameters_dict</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/mlflow_log_params.png" class="align-center" src="../_images/mlflow_log_params.png" />
+</div>
+<div class="section" id="mllflow-log-evaluation-metrics">
+<h2>MLlflow log evaluation metrics<a class="headerlink" href="#mllflow-log-evaluation-metrics" title="Permalink to this headline">¶</a></h2>
+<p>This function logs the evaluation metrics</p>
+<p>A successful response will return a string response to indicate the metric is logged, and raises an exception otherwise</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow_log_metric</span><span class="p">(</span>
+   <span class="n">key</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+   <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/mlflow_log_metric.png" class="align-center" src="../_images/mlflow_log_metric.png" />
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2022 - 2023, ShuMing Peh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/commands/mlflow_databricks.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/shumingpeh/data-ml-utils" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
