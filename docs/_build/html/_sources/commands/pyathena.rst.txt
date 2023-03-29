@@ -24,8 +24,8 @@ Defining the environment variables can be done through `cli` or in your `.ipynb`
 .. code-block:: python
 
    import os
-   os.environ["AWS_ACCESS_KEY_ID"] = "xxx"
-   os.environ["AWS_SECRET_ACCESS_KEY"] = "xxx"
+   os.environ["AWS_ACCESS_KEY_ID"] = "xxx" # pragma: allowlist secret
+   os.environ["AWS_SECRET_ACCESS_KEY"] = "xxx" # pragma: allowlist secret
 
 
 Initialising pyathena connection
