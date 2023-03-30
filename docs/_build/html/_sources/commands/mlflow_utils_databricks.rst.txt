@@ -63,7 +63,7 @@ A successful response will return the artifact, and raises an exception otherwis
 .. image:: ../_static/mlflow_load_artifact_utils.png
    :align: center
 
-At the moment, we allow for a few types of loading of artifacts; `pkl`, `joblib`, `dict` and `yaml` 
+At the moment, we allow for a few types of loading of artifacts; `pkl`, `joblib`, `dict` and `yaml`
 
 
 MLlflow retrieve model evaluation metrics
@@ -110,9 +110,9 @@ A successful response will return both specified stage tag of its MLflow run_id,
 
 MLlflow promote model
 ---------------------
-This function decides if we need to promote model to the staging tag if there is no model in the specified staging tag, and 
+This function decides if we need to promote model to the staging tag if there is no model in the specified staging tag, and
 
-A successful response will return a string response to 
+A successful response will return a string response to
 
 .. code-block:: python
 

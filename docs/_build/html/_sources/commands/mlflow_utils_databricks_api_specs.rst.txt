@@ -91,7 +91,7 @@ mlflow_get_both_registered_model_info_run_id
 mlflow_promote_model
 --------------------
 .. py:function:: mlflow_promote_model(name: str, retrained_run_id: str, retrained_metric: float, start_date: str, eval_date: str, env: str, mlflow_client: mlflow.tracking.client.MlflowClient, metrics_name: str, prev_run_id: str = None, prev_metric: float = 0.0,)
-   function that decides if we need to promote model to the staging tag if there is no model in the specified staging tag, and 
+   function that decides if we need to promote model to the staging tag if there is no model in the specified staging tag, and
 
    :param key: name of evaluation metric
    :type key: str

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>data-ml-utils &#8212; data_ml_utils 0.3.5 documentation</title>
+    <title>data-ml-utils &#8212; hip-data-ml-utils 0.3.5 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -53,6 +53,10 @@
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_tracker_databricks_api_specs.html">MLflow tracker Databricks API Specs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_utils_databricks.html">MLflow utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_utils_databricks_api_specs.html">MLflow utils Databricks API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_serve.html">MLflow serve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_serve_api_specs.html">MLflow serve API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_prediction_requests.html">MLflow prediction requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_prediction_requests_api_specs.html">MLflow prediction requests API Specs</a></li>
 </ul>
 
 
@@ -99,7 +103,6 @@
   <div class="section" id="data-ml-utils">
 <h1>data-ml-utils<a class="headerlink" href="#data-ml-utils" title="Permalink to this headline">¶</a></h1>
 <p>This python library package covers the common utility packages that data/ml project will use</p>
-<a class="reference external image-reference" href="https://github.com/hipagesgroup/data-ml-utils/tree/master"><img alt="_images/github_logo.png" src="_images/github_logo.png" style="width: 34.4px; height: 36.84px;" /></a>
 <p>data-ml-utils has a few utilities that we try to generalise across projects.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
@@ -112,6 +115,10 @@
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_tracker_databricks_api_specs.html">MLflow tracker Databricks API Specs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_utils_databricks.html">MLflow utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/mlflow_utils_databricks_api_specs.html">MLflow utils Databricks API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_serve.html">MLflow serve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_serve_api_specs.html">MLflow serve API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_prediction_requests.html">MLflow prediction requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/mlflow_prediction_requests_api_specs.html">MLflow prediction requests API Specs</a></li>
 </ul>
 </div>
 <div class="section" id="why-are-packaging-this-into-a-python-library">
@@ -163,6 +170,28 @@ This covers:</p>
 </ul>
 <p>See <a class="reference internal" href="commands/mlflow_utils_databricks.html"><span class="doc">MLflow utils</span></a> for more details.</p>
 </div>
+<div class="section" id="mlflow-serve">
+<h2>MLflow serve<a class="headerlink" href="#mlflow-serve" title="Permalink to this headline">¶</a></h2>
+<p>We try to fit the function calls to be as simple as possible with a one-liner.
+This covers:</p>
+<ul class="simple">
+<li><p>enable model endpoint</p></li>
+<li><p>get endpoint status</p></li>
+<li><p>get endpoint state status</p></li>
+<li><p>update databricks model endpoint compute config</p></li>
+</ul>
+<p>See <a class="reference internal" href="commands/mlflow_serve.html"><span class="doc">MLflow serve</span></a> for more details.</p>
+</div>
+<div class="section" id="mlflow-prediction-requests">
+<h2>MLflow prediction requests<a class="headerlink" href="#mlflow-prediction-requests" title="Permalink to this headline">¶</a></h2>
+<p>We try to fit the function calls to be as simple as possible with a one-liner.
+This covers:</p>
+<ul class="simple">
+<li><p>verify prediction of requests and expected</p></li>
+<li><p>post requests for integration tests</p></li>
+</ul>
+<p>See <a class="reference internal" href="commands/mlflow_prediction_requests.html"><span class="doc">MLflow prediction requests</span></a> for more details.</p>
+</div>
 </div>
 
 
@@ -173,7 +202,7 @@ This covers:</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2022 - 2023, ShuMing Peh.
+      &copy;2022 - 2023, hipages group.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>

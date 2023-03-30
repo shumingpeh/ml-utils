@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLflow prediction requests API Specs &#8212; hip-data-ml-utils 0.3.5 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MLflow Prediction Requests" href="mlflow_prediction_requests.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/hipages_logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pyathena.html">Pyathena client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyathena_api_specs.html">Pyathena API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyathena_utils_api_specs.html">Pyathena Utils API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="databricks_utils_api_specs.html">Databricks API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_tracker_databricks.html">MLflow tracker utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_tracker_databricks_api_specs.html">MLflow tracker Databricks API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_utils_databricks.html">MLflow utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_utils_databricks_api_specs.html">MLflow utils Databricks API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_serve.html">MLflow serve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_serve_api_specs.html">MLflow serve API Specs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlflow_prediction_requests.html">MLflow Prediction Requests</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLflow prediction requests API Specs</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/hipagesgroup/data-ml-utils">data-ml-utils@github</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="mlflow_prediction_requests.html" title="previous chapter">MLflow Prediction Requests</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="mlflow-prediction-requests-api-specs">
+<h1>MLflow prediction requests API Specs<a class="headerlink" href="#mlflow-prediction-requests-api-specs" title="Permalink to this headline">¶</a></h1>
+<p><cite>Methods</cite></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>verify_prediction</strong> (<cite>response_json, expected_keywords_response,</cite>)</p></td>
+<td><p>verifies if a prediction output is as expected</p></td>
+<td><p><a class="reference internal" href="#verify-prediction"><span class="std std-ref">verify_prediction</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_requests</strong> (<cite>model_name, databricks_cluster_hostname, databricks_workspace_token, settings, keywords, stage_env, request_time_out</cite>)</p></td>
+<td><p>makes post requests for model inference and verify that inference is within expectations</p></td>
+<td><p><a class="reference internal" href="#get-requests"><span class="std std-ref">get_requests</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="verify-prediction">
+<span id="id1"></span><h2>verify_prediction<a class="headerlink" href="#verify-prediction" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="verify_prediction">
+<span class="sig-name descname"><span class="pre">verify_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_keywords_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verify_prediction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load</span> <span class="pre">an</span> <span class="pre">ML</span> <span class="pre">model</span> <span class="pre">from</span> <span class="pre">MLflow</span> <span class="pre">run,</span> <span class="pre">raises</span> <span class="pre">an</span> <span class="pre">exception</span> <span class="pre">if</span> <span class="pre">type_of_model</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">dictionary</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response_json</strong> (<em>dict</em>) – json response of the post request from model endpoint</p></li>
+<li><p><strong>expected_keywords_response</strong> (<em>str</em>) – expected top parent seo name for keywords</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>non exit response if response matches</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="get-requests">
+<span id="id2"></span><h2>get_requests<a class="headerlink" href="#get-requests" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="get_requests">
+<span class="sig-name descname"><span class="pre">get_requests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databricks_cluster_hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databricks_workspace_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Production'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_time_out</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_requests" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load</span> <span class="pre">an</span> <span class="pre">artifact</span> <span class="pre">from</span> <span class="pre">MLflow</span> <span class="pre">run,</span> <span class="pre">accepts</span> <span class="pre">`joblib,</span> <span class="pre">pkl,</span> <span class="pre">dict</span> <span class="pre">and</span> <span class="pre">yaml`</span> <span class="pre">file</span> <span class="pre">types</span></span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<em>str</em>) – name of the registered model</p></li>
+<li><p><strong>databricks_cluster_hostname</strong> (<em>str</em>) – hostname of the databricks cluster</p></li>
+<li><p><strong>databricks_workspace_token</strong> (<em>str</em>) – token of the databricks workspace</p></li>
+<li><p><strong>settings</strong> (<em>dict</em>) – repo settings and configuration</p></li>
+<li><p><strong>keywords</strong> (<em>str</em>) – keywords to be used for prediction</p></li>
+<li><p><strong>stage_env</strong> (<em>str</em>) – stage of the registered model (e.g. Staging or Production)</p></li>
+<li><p><strong>request_time_out</strong> (<em>int</em>) – time out for the request</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns a callable python object; dictionary, pandas dataframe, list</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2022 - 2023, hipages group.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/commands/mlflow_prediction_requests_api_specs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/shumingpeh/data-ml-utils" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
