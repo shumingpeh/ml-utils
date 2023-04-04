@@ -1,4 +1,4 @@
-MLflow prediction requests 
+MLflow prediction requests
 ==========================
 
 This MLflow prediction requests will be used when we run our integration tests after a model endpoint is deployed. This is to ensure the deployed model works as expected. This would only work in databricks ML runtime cluster.
